@@ -1,0 +1,19 @@
+body{
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-top:2em;
+    padding-bottom: 2em;
+}
+
+.border{
+    border: 0.1em solid gray;
+    margin-top:0.2em;
+}
+a{
+  float: right;
+  font-size: 0.7em;
+  padding-right: 1em;  
+}
+.center{
+  float: right;
+}

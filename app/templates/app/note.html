@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>I2V - Onboarding System</title>
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
+        crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/index.css' %}  " />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        
+</head>
+
+<body>
+        
+        <form enctype="multipart/form-data" method="post">{% csrf_token %}
+        
+            <!-- {{ form.notes.label_tag }} {{ form.notes.errors }} {{ form.notes }} -->
+            <div class="row">
+            {{ form.title.label_tag }} {{ form.title.errors }} {{ form.title }}
+            
+            <label for="notes">Note</label>
+            <textarea type="text" rows="10" cols="40" name="notes" value="notes"></textarea>
+            
+        
+        <input type="submit" value="save" />
+    </div>
+
+        
+        </form>
+        <div class="row">
+            
+        {% for getnote in note %}
+        <div class="border" >
+
+                <fieldset class="majorpoints">
+                        <div class="majorpointslegend">
+                        
+            
+            <span>Title:</span>
+        <span>{{ getnote.title }}</span > <span class="center">{{ getnote.date }}</span> <a href="{% url 'notes:delete' getnote.id %}">X</a>
+        <a href="{% url 'notes:edit' getnote.id %}">Edit</a>
+                        </div>
+                        
+        <div class="hiders" style="display:none" >
+                {{ getnote.notes}}
+            </div>
+            {% endfor %}
+    </div>
+    
+   </body>
+   <script>
+   $('.majorpoints').click(function(){
+    $(this).find('.hiders').toggle();
+});
+   </script>
+   </html>     
